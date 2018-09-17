@@ -17,7 +17,9 @@ export default class Listen extends SfdxCommand {
 
   public static args = [{name: 'eventName'}];
 
-  protected static flagsConfig = {};
+  protected static flagsConfig = {
+    'wait': flags.string({char: 'w', description: 'Wait for events for...'}),
+  };
 
   // Comment this out if your command does not require an org username
   protected static requiresUsername = true;
@@ -40,11 +42,14 @@ export default class Listen extends SfdxCommand {
   }
 
   public async run(): Promise<core.AnyJson> {
+    let waitForInMilliseconds:number = (this.flags.wait != null)
+      ? (1000 * 60 * this.flags.wait)
+      : (1000 * 60 * 10);
     const conn = this.org.getConnection();
-    this.ux.startSpinner(`Listen ${this.args.eventName} for ${this.org.getAuthInfo().getUsername()}`);
+    this.ux.startSpinner(`Listen ${this.args.eventName} for ${this.org.getAuthInfo().getUsername()} for ${waitForInMilliseconds / 60000} minutes.`);
     this.listenEvents(conn);
     //needs to fixed to never stop, until user end process
-    await this.delay(1000 * 60 * 10);
+    await this.delay(waitForInMilliseconds);
     return {};
   }
 

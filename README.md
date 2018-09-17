@@ -43,6 +43,7 @@ USAGE
 OPTIONS
   -u, --targetusername=targetusername              username or alias for the target org; overrides default target org
   -v, --targetdevhubusername=targetdevhubusername  username or alias for the dev hub org; overrides default dev hub org
+  -w, --wait=wait                                  Wait for events for...
   --apiversion=apiversion                          override the api version used for api requests made by this command
   --json                                           format output as json
   --loglevel=(trace|debug|info|warn|error|fatal)   logging level for this command invocation
