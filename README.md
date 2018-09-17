@@ -48,7 +48,7 @@ OPTIONS
   --loglevel=(trace|debug|info|warn|error|fatal)   logging level for this command invocation
 
 EXAMPLE
-  $ sfdx event:listen --targetusername myOrg@example.com --targetdevhubusername devhub@org.com
+  $ sfdx dtq:event:listen --targetusername myOrg@example.com --targetdevhubusername devhub@org.com
 ```
 
 _See code: [src/commands/dtq/event/listen.ts](https://github.com/dieffrei/dtq/blob/v0.0.0/src/commands/dtq/event/listen.ts)_

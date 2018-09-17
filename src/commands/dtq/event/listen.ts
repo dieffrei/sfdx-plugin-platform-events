@@ -28,8 +28,8 @@ export default class Listen extends SfdxCommand {
   // Set this to true if your command requires a project workspace; 'requiresProject' is false by default
   protected static requiresProject = false;
 
-  public delay(): Promise<any> {
-    return new Promise((resolve) => {});
+  public delay(time:number): Promise<any> {
+    return new Promise((resolve) => setTimeout(resolve,time));
   }
 
   public async listenEvents(conn) {
@@ -43,7 +43,8 @@ export default class Listen extends SfdxCommand {
     const conn = this.org.getConnection();
     this.ux.startSpinner(`Listen ${this.args.eventName} for ${this.org.getAuthInfo().getUsername()}`);
     this.listenEvents(conn);
-    await this.delay();
+    //needs to fixed to never stop, until user end process
+    await this.delay(1000 * 60 * 10);
     return {};
   }
 
