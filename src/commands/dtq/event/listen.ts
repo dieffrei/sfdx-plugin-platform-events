@@ -35,7 +35,11 @@ export default class Listen extends SfdxCommand {
   }
 
   public async listenEvents(conn) {
-    conn.streaming.topic("/event/" + this.args.eventName)
+    let channel = "/event/" + this.args.eventName;
+    if (this.args.eventName.indexOf('__ChangeEvent')> -1) {
+      channel = "/data/" + this.args.eventName
+    }
+    conn.streaming.topic(channel)
       .subscribe( (message) => {
         this.ux.logJson(message);
     });

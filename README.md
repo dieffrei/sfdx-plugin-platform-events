@@ -22,7 +22,7 @@ $ npm install -g dtq
 $ dtq COMMAND
 running command...
 $ dtq (-v|--version|version)
-dtq/0.0.0 darwin-x64 node-v8.9.4
+dtq/0.0.0 darwin-x64 node-v14.16.0
 $ dtq --help [COMMAND]
 USAGE
   $ dtq COMMAND
